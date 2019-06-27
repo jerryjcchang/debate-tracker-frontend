@@ -1,40 +1,38 @@
 import React from 'react'
 import CardBack from './CardBack'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Button, Image } from 'semantic-ui-react'
 
 class CandidateCard extends React.Component {
 
   state = {
-    showBack: false
+    showBack: false,
   }
 
   render(){
-    const { name, img_url, poll, age, title } = this.props.candidate
+    const {handleChange, candidate} = this.props
+    const { name, img_url, poll, age, title } = candidate
     return(
-      <>
-      <div
+      <Card
         onMouseEnter={() => {this.setState({showBack: true})}}
         onMouseLeave={() => {this.setState({showBack: false})}}
-        raised
       >
-        <>
-        <h1>{name}</h1>
-        <p>{title}<p>
-        </>
+        <Card.Content>
+        <Card.Header>{name}</Card.Header>
+        <Card.Meta>{title}</Card.Meta>
+        </Card.Content>
           {
-            !this.state.showBack ?
+            !this.props.allBack ?
             <>
-            <Image size="tiny" centered src={img_url} />
-            <Card.Content extra textAlign="left">
+            <Image id="candidate-img" centered size="tiny" src={img_url} />
+            <Card.Content extra>
             <p>Poll Average: {poll+"%"}</p>
             <p>Age: {age}</p>
             </Card.Content>
             </>
             :
-            <CardBack />
+            <CardBack ratings={candidate} handleChange={handleChange} />
           }
-        </Card>
-        </>
+       </Card>
     )
   }
 }

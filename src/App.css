@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 2vh;
 }
 
 .App-logo {
@@ -30,4 +31,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#candidate-img {
+  height: 37vh;
+}
+
+#details-btn {
+  margin-bottom: 2vh;
 }
