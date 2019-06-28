@@ -62,6 +62,17 @@ class App extends React.Component {
       })
   }
 
+  resetCandidate = (id) => {
+    fetch(`http://localhost:3000/api/v1/candidates/${id}/reset`,
+    { method: "PATCH",
+      headers: {
+        'Content-Type':'application/json'
+      },
+    })
+    .then(r => r.json())
+    .then((d) => this.addUpdatedCandidateToState(d))
+  }
+
   addUpdatedCandidateToState = (d) => {
     let {candidates} = this.state
     let candidatesCopy = JSON.parse(JSON.stringify(candidates))
@@ -83,10 +94,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <Image src="https://i.imgur.com/PyBQpa2.png" alt="logo" size="medium" centered/>
-        <Button id="details-btn" color="blue" onClick={this.handleAllBack}>Show Details</Button>
-        <Card.Group itemsPerRow={4}>
+        <Button id="details-btn" color="blue" onClick={this.handleAllBack}>{!this.state.showAllBack ? "Show Details" : "Show Profile"}</Button>
+        <Card.Group stackable doubling itemsPerRow={4}>
           {this.state.candidates.map((c,i) =>
-          <CandidateCard handleChange={this.updateCandidate} index={i} candidate={c} allBack={this.state.showAllBack} />)}
+          <CandidateCard handleChange={this.updateCandidate} index={i} candidate={c} reset={this.resetCandidate} allBack={this.state.showAllBack} />)}
         </Card.Group>
       </div>
     )

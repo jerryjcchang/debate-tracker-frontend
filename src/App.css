@@ -33,10 +33,67 @@
   }
 }
 
-#candidate-img {
-  height: 37vh;
+#card {
+  height: 63vh;
+}
+
+form {
+  height: 75%;
+  padding-top: 2vh;
+}
+
+.ui.tiny.centered.image {
+  object-fit: cover;
+  object-position: 50% 7%;
+  height: 72%;
+  width: 60%;
+}
+
+#candidate-img-2 {
+  object-position: 50% 10%;
+}
+
+#candidate-img-3 {
+  object-position: 50% 13%;
+}
+
+#candidate-img-4 {
+  object-position: 50% 17%;
+}
+
+#candidate-img-5 {
+  object-position: 50% 2%;
+}
+
+#candidate-img-6 {
+  object-position: 50% 10%;
+}
+
+#candidate-img-7 {
+  object-position: 50% -2%;
+}
+
+#candidate-img-8 {
+  object-position: 50% 15%;
+}
+
+#candidate-img-9 {
+  object-position: 50% 12%;
 }
 
 #details-btn {
   margin-bottom: 2vh;
+}
+
+#header-div {
+  background-color: #2185d0;
+}
+
+#card-footer {
+  padding-top: 1vh;
+  height: 20%
+}
+
+#header, #meta {
+  color: white;
 }

@@ -13,12 +13,8 @@ class CardBack extends React.Component {
   }
 
   handleReset = () => {
+    this.props.reset(this.props.ratings.id)
     this.setState({
-      fp: 3,
-      hc: 3,
-      ec: 3,
-      im: 3,
-      gc: 3,
       open: false,
     })
   }
@@ -36,12 +32,22 @@ class CardBack extends React.Component {
   }
 
   render(){
-    const {ratings, handleChange} = this.props
-    const {fp, hc, ec, im, gc} = ratings
+    const {ratings, handleChange, reset} = this.props
+    const {fp, hc, ec, im, gc, id, cg} = ratings
 
     return(
       <>
       <Form>
+        <Popup
+          content={ec}
+          trigger={
+            <Form.Field>
+              <label>Economy</label>
+              <input name="ec" value={ec} onChange={(e) => {handleChange(e, ratings.id)}} type="range" min="1" max="5" step="1" />
+            </Form.Field>
+          }
+          position="top center"
+          />
         <Popup
           content={fp}
           trigger={
@@ -58,16 +64,6 @@ class CardBack extends React.Component {
           <Form.Field>
           <label>Healthcare</label>
           <input name="hc" value={hc} onChange={(e) => {handleChange(e, ratings.id)}} type="range" min="1" max="5" step="1" />
-          </Form.Field>
-          }
-          position="top center"
-        />
-        <Popup
-          content={ec}
-          trigger={
-          <Form.Field>
-          <label>Economy</label>
-          <input name="ec" value={ec} onChange={(e) => {handleChange(e, ratings.id)}} type="range" min="1" max="5" step="1" />
           </Form.Field>
           }
           position="top center"
@@ -92,8 +88,18 @@ class CardBack extends React.Component {
           }
           position="top center"
         />
+        <Popup
+          content={cg}
+          trigger={
+          <Form.Field>
+          <label>Climate Change</label>
+          <input name="cg" value={cg} onChange={(e) => {handleChange(e, ratings.id)}} type="range" min="1" max="5" step="1" />
+          </Form.Field>
+          }
+          position="top center"
+        />
       </Form>
-      <Card.Content extra>
+      <Card.Content id="card-back" extra>
       <Button onClick={this.handleOpen} color="red">Reset</Button>
       </Card.Content>
       <Confirm
