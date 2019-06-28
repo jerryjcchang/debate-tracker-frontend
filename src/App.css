@@ -34,7 +34,7 @@
 }
 
 #card {
-  height: 63vh;
+  height: 70vh;
 }
 
 form {
@@ -45,8 +45,12 @@ form {
 .ui.tiny.centered.image {
   object-fit: cover;
   object-position: 50% 7%;
-  height: 72%;
-  width: 60%;
+  height: 67%;
+  width: 90%;
+}
+
+.ui.medium.image {
+  width: 20vw;
 }
 
 #candidate-img-2 {

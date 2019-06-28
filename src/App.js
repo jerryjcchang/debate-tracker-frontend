@@ -95,7 +95,7 @@ class App extends React.Component {
       <div className="App">
         <Image src="https://i.imgur.com/PyBQpa2.png" alt="logo" size="medium" centered/>
         <Button id="details-btn" color="blue" onClick={this.handleAllBack}>{!this.state.showAllBack ? "Show Details" : "Show Profile"}</Button>
-        <Card.Group stackable doubling itemsPerRow={4}>
+        <Card.Group doubling itemsPerRow={4}>
           {this.state.candidates.map((c,i) =>
           <CandidateCard handleChange={this.updateCandidate} index={i} candidate={c} reset={this.resetCandidate} allBack={this.state.showAllBack} />)}
         </Card.Group>
