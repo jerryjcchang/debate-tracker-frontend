@@ -5,6 +5,8 @@ import {data} from './data'
 import CandidateCard from './components/Card'
 import { Card, Button, Image } from 'semantic-ui-react'
 import SweetAlert from 'sweetalert-react'
+const URL = 'https://debate-trackr-backend.herokuapp.com/api/v1'
+const CANDIDATES = `${URL}/candidates`
 
 class App extends React.Component {
 
@@ -18,7 +20,7 @@ class App extends React.Component {
   }
 
   getCandidates = () => {
-    fetch('http://localhost:3000/api/v1/candidates')
+    fetch(CANDIDATES)
     .then(r => r.json())
     .then(d => this.setState({candidates: d}))
   }
@@ -55,7 +57,7 @@ class App extends React.Component {
       body: JSON.stringify(data)
     }
 
-    fetch(`http://localhost:3000/api/v1/candidates/${id}`, configObj)
+    fetch(`${CANDIDATES}/${id}`, configObj)
     .then(r => r.json())
     .then((d) => {
         this.addUpdatedCandidateToState(d)
@@ -63,7 +65,7 @@ class App extends React.Component {
   }
 
   resetCandidate = (id) => {
-    fetch(`http://localhost:3000/api/v1/candidates/${id}/reset`,
+    fetch(`${CANDIDATES}/${id}/reset`,
     { method: "PATCH",
       headers: {
         'Content-Type':'application/json'
