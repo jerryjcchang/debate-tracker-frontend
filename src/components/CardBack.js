@@ -33,7 +33,7 @@ class CardBack extends React.Component {
 
   render(){
     const {ratings, handleChange, reset} = this.props
-    const {fp, hc, ec, im, gc, id, cg} = ratings
+    const {fp, hc, ec, im, gc, cg, id} = ratings
 
     return(
       <>
@@ -100,16 +100,17 @@ class CardBack extends React.Component {
         />
       </Form>
       <Card.Content id="card-back" extra>
-      <Button onClick={this.handleOpen} color="red">Reset</Button>
+      <Button onClick={() => {reset(id)}} color="red">Reset</Button>
       </Card.Content>
-      <Confirm
-        open={this.state.open}
-        onCancel={this.handleClose}
-        onConfirm={this.handleReset}
-        content="Are you sure you want to reset?"/>
       </>
     )
   }
 }
 
 export default CardBack
+
+// <Confirm
+//   open={this.state.open}
+//   onCancel={this.handleClose}
+//   onConfirm={this.handleReset}
+//   content="Are you sure you want to reset?"/>

@@ -5,6 +5,8 @@ import {data} from './data'
 import CandidateCard from './components/Card'
 import { Card, Button, Image } from 'semantic-ui-react'
 import SweetAlert from 'sweetalert-react'
+import 'sweetalert/dist/sweetalert.css'
+
 const URL = 'https://debate-trackr-backend.herokuapp.com/api/v1'
 const CANDIDATES = `${URL}/candidates`
 
@@ -12,7 +14,9 @@ class App extends React.Component {
 
   state = {
     candidates: [],
-    showAllBack: false
+    showAllBack: false,
+    show: false,
+    idToClear: null
   }
 
   componentDidMount(){
@@ -64,8 +68,15 @@ class App extends React.Component {
       })
   }
 
-  resetCandidate = (id) => {
-    fetch(`${CANDIDATES}/${id}/reset`,
+  handleReset = (id) => {
+    this.setState({
+      show: true,
+      idToClear: id
+    })
+  }
+
+  resetCandidate = () => {
+    fetch(`${CANDIDATES}/${this.state.idToClear}/reset`,
     { method: "PATCH",
       headers: {
         'Content-Type':'application/json'
@@ -85,9 +96,9 @@ class App extends React.Component {
         return c
       }
     })
-
     this.setState({
-      candidates: x
+      candidates: x,
+      show: false
     })
 
   }
@@ -95,11 +106,19 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
+        <SweetAlert
+          show={this.state.show}
+          title="Reset Ratings?"
+          text="Are you sure you want to reset?"
+          showCancelButton
+          onConfirm={() => {this.resetCandidate()}}
+          onCancel={() => {this.setState({show: false})}}
+        />
         <Image src="https://i.imgur.com/PyBQpa2.png" alt="logo" size="medium" centered/>
         <Button id="details-btn" color="blue" onClick={this.handleAllBack}>{!this.state.showAllBack ? "Show Details" : "Show Profile"}</Button>
         <Card.Group doubling itemsPerRow={4}>
           {this.state.candidates.map((c,i) =>
-          <CandidateCard handleChange={this.updateCandidate} index={i} candidate={c} reset={this.resetCandidate} allBack={this.state.showAllBack} />)}
+          <CandidateCard handleChange={this.updateCandidate} index={i} candidate={c} reset={this.handleReset} allBack={this.state.showAllBack} />)}
         </Card.Group>
       </div>
     )
