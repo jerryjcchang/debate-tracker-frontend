@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  padding: 2vh;
+  padding: 2vw;
 }
 
 .App-logo {
@@ -33,24 +33,32 @@
   }
 }
 
-#card {
-  height: 70vh;
+.cand-card {
+  max-height: 35rem;
 }
 
 form {
-  height: 75%;
   padding-top: 2vh;
+}
+
+.ui.form {
+  height: 37rem;
 }
 
 .ui.tiny.centered.image {
   object-fit: cover;
   object-position: 50% 7%;
-  height: 67%;
+  height: 20rem;
   width: 90%;
 }
 
 .ui.medium.image {
   width: 20vw;
+}
+
+.ui.tiny.centered.image {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #candidate-img-2 {
@@ -90,17 +98,69 @@ form {
 }
 
 #header-div {
+  height: 5rem;
   background-color: #2185d0;
 }
 
 #card-footer {
+  height: 20rem;
   padding-top: 1vh;
-  height: 20%
 }
 
-#header, #meta {
+#card-header,
+#meta {
   color: white;
+}
+
+#meta {
+  font-style: italic;
 }
 .confirm {
   background-color: red !important;
+}
+
+.details-btn {
+  margin: auto;
+}
+
+.btn-div {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.logo-container {
+  max-width: 25vw;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    max-width: 50vw;
+    margin-bottom: 1rem;
+  }
+
+  .ui-form {
+    height: 20rem;
+  }
+
+  .ui.tiny.centered.image {
+    max-height: 20rem;
+  }
+}
+
+@media (max-width: 723px) {
+  .ui-form {
+    height: 36rem;
+  }
+}
+
+#card-back {
+  height: 5.5rem;
+  display: inherit;
+  margin: auto;
+}
+
+.ui.blue.button,
+.ui.red.button {
+  white-space: nowrap;
 }
